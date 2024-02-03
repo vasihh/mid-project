@@ -1,0 +1,12 @@
+<div *ngFor="let product of topsWomen" class="products">
+    <div class="looop-div">
+        <span class="price">price: {{product.price}} <span class="currency-symbol">₪</span></span>
+        <br>
+        <span>size: </span>
+        <span *ngFor="let size of product.size" class="size">{{size}}</span>
+        <br>
+        <button (click)="addtobag(product)" class="add-to-bag" [disabled]="!product.inStock">ADD TO BAG</button>
+        <span *ngIf="!product.inStock" class="out-of-stock">Out of Stock</span>
+    </div>
+<img class="product-image" [src]="product.imageUrl"/>
+</div>
