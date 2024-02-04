@@ -1,1 +1,26 @@
-<p>men works!</p>
+<div class="container">
+    <div *ngFor="let product of topsMen" class="product-card">
+        <img class="product-image" [src]="product.imageUrl"/>
+        <div class="product-details">
+            <p class="price">Price: {{ product.price }}<span>₪</span></p>
+            <!--פה זה הסיליקטור של המידות -->
+            <div class="sizes">
+                <!--פה העדפתי לעשות דרופדאון -->
+                
+                    <div class="size-options">
+                        <label for="size-select"> Size: </label>
+                        <select [(ngModel)]="selectedSize[product.id]" class="size-dropdown">
+                            <option *ngFor="let size of product.size" [value]="size">{{ size }}</option>
+                          </select>
+                        
+                    </div>
+            </div>
+            <!--פה מסתיים הסיקשן של המידות-->
+
+            <!--הוספה לעגלה / אם אין כמותת אז הלחצן לא יופעל-->
+            <!--את זה עשיתי בעזרת DISABLED CHECK-->
+            <button (click)="addToCart(product)" class="add-to-bag" [disabled]="!product.inStock">ADD TO BAG</button>
+            <p *ngIf="!product.inStock" class="out-of-stock">Out of Stock</p>
+        </div>
+    </div>
+</div>

@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { Product } from '../models/product.model';
+import { CartService } from '../cart.service';
+import { FormsModule } from '@angular/forms';
+
+
 @Component({
   selector: 'app-men',
   templateUrl: './men.component.html',
   styleUrls: ['./men.component.css']
 })
-export class MenComponent {
-
-
+export class MenComponent {   
+  selectedSize: {[key: number]: string} = {};
   topsMen : Product[] = [
     {id:1, price: 59, imageUrl:"https://img.ltwebstatic.com/images3_pi/2022/10/18/16660703076e1bf7842fff192ebcd8c82a9d06f21e_thumbnail_600x.webp",
     size: ['S', 'M', 'L', 'XL', 'XXL'], inStock: false},
@@ -17,4 +20,16 @@ export class MenComponent {
     size: ['S', 'M', 'L', 'XL', 'XXL'], inStock: true},
 
   ]
+
+  constructor (private cartservices: CartService){
+
+  }
+
+  addToCart(product: Product) {
+ 
+    const productWithSize = {
+      ...product,
+      selectedSize: this.selectedSize[product.id]};
+    this.cartservices.addToCart(productWithSize); 
+  }
 }

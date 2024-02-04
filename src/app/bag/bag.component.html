@@ -1,1 +1,18 @@
-<p>bag works!</p>
+
+<div class="cart-container">
+    <h2 *ngIf="cartItems.length > 0">Your Cart</h2>
+            <div class="empty-cartt" *ngIf="cartItems.length ===0">
+                <div class="cart-is-empty">Your cart is empty.</div>
+                <button class="return-to-shop" routerLink="" >Retur to shop</button>
+            </div>
+
+
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img [src]="item.imageUrl" class="product-image">
+      <div class="product-details">
+        <p>Size: {{ item.selectedSize }}</p>
+        <p>{{ item.price }}₪</p>        
+      </div>
+    </div>
+  </div>
+  

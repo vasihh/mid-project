@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Product } from '../models/product.model';
+import { CartService } from '../cart.service';
 import { HeaderComponent } from '../header/header.component';
+
 @Component({
   selector: 'app-women',
   templateUrl: './women.component.html',
@@ -18,11 +20,11 @@ export class WomenComponent {
    'XL'], inStock:false}
    ];
 
-
-   addtobag(product : Product): void{
-    //console.log('product added to bag: ' , product);
-
+   constructor(private cartservice : CartService){
 
    }
 
+   addToCart(product:Product){
+    this.cartservice.addToCart(product);
+   }
 }

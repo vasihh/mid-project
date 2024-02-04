@@ -1,0 +1,37 @@
+.cart-container{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    height: 100vh;
+
+}
+
+.cart-is-empty {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+
+.return-to-shop{
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 50px;
+}
+
+
+
+
+.return-to-shop:hover {
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    border-radius: 50px;
+    transition:  all .5s ease-in-out;
+}

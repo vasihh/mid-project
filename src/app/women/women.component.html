@@ -1,3 +1,33 @@
+<div class="container">
+    <div *ngFor="let product of topsWomen" class="product-card">
+        <img class="product-image" [src]="product.imageUrl"/>
+        <div class="product-details">
+            <p class="price">Price: {{ product.price }}<span>₪</span></p>
+            <!--פה זה הסיליקטור של המידות -->
+            <div class="sizes">
+                <!--פה העדפתי לעשות דרופדאון -->
+                <p *ngFor="let size in product.size" class="sss">{{size}}</p>
+                    <div class="size-options">
+                        <label for="size-select"> Size: </label>
+                        <select id="size-select" class="size-dropdown">
+                        <option *ngFor="let size of product.size" [value]="size">{{ size }}</option>
+                        </select>
+                    </div>
+            </div>
+            <!--פה מסתיים הסיקשן של המידות-->
+
+            <!--הוספה לעגלה / אם אין כמותת אז הלחצן לא יופעל-->
+            <!--את זה עשיתי בעזרת DISABLED CHECK-->
+            <button (click)="addToCart(product)" class="add-to-bag" [disabled]="!product.inStock">ADD TO BAG</button>
+            <p *ngIf="!product.inStock" class="out-of-stock">Out of Stock</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--
 <div *ngFor="let product of topsWomen" class="products">
     <div class="looop-div">
         <span class="price">price: {{product.price}} <span class="currency-symbol">₪</span></span>
@@ -10,3 +40,4 @@
     </div>
 <img class="product-image" [src]="product.imageUrl"/>
 </div>
+-->

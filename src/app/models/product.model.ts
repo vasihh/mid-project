@@ -4,4 +4,5 @@ export interface Product{
     imageUrl: string;
     size:string[];
     inStock : boolean;
+    selectedSize?: string;
 }

@@ -9,10 +9,11 @@ import { BagComponent } from './bag/bag.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 
 const appRouting : Routes = [
-{path: "home",component: HomeComponent},
+{path: "",component: HomeComponent},
 {path:"women", component:WomenComponent},
 {path:'men',component:MenComponent},
 {path: "bag",component: BagComponent}
@@ -29,7 +30,8 @@ const appRouting : Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRouting)
+    RouterModule.forRoot(appRouting),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
