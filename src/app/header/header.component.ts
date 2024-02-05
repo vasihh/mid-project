@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 
 @Component({
@@ -7,22 +6,14 @@ import { CartService } from '../cart.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent {
   cartCount = 0;
-  private subscription: Subscription = new Subscription();
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.subscription = this.cartService.getCartCount()
-      .subscribe(count => {
-        this.cartCount = count;
-      });
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.cartService.cartUpdated.subscribe(() => {
+      this.cartCount = this.cartService.getCartCount();
+    });
   }
 }

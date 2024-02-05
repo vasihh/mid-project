@@ -24,7 +24,7 @@ export class WomenComponent {
 
    }
 
-   addToCart(product:Product){
+   addToCart(product: Product) {
     this.cartservice.addToCart(product);
-   }
+  }
 }

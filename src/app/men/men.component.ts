@@ -26,10 +26,6 @@ export class MenComponent {
   }
 
   addToCart(product: Product) {
- 
-    const productWithSize = {
-      ...product,
-      selectedSize: this.selectedSize[product.id]};
-    this.cartservices.addToCart(productWithSize); 
+    this.cartservices.addToCart(product);
   }
 }

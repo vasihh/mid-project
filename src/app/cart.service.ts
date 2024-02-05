@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from './models/product.model';
 
@@ -6,23 +6,27 @@ import { Product } from './models/product.model';
   providedIn: 'root'
 })
 export class CartService {
-  private itemsInCart : Product[] = [];
-  private cartCount = new BehaviorSubject<number>(0);
-  private cartItems  = new BehaviorSubject<Product[]>(this.itemsInCart);
 
-  constructor() { }
+  private itemsInCart: Product[] = [];
+  private total_price: number = 0;
 
-  addToCart(product : Product) {
+  cartUpdated = new EventEmitter<void>();
+
+  addToCart(product: Product) {
     this.itemsInCart.push(product);
-    this.cartCount.next(this.itemsInCart.length);
-    this.cartItems.next(this.itemsInCart);
+    this.total_price += product.price;
+    this.cartUpdated.emit();
+  }
+
+  getCartItems() {
+    return this.itemsInCart.slice(); 
   }
 
   getCartCount() {
-    return this.cartCount.asObservable();
+    return this.itemsInCart.length; 
   }
 
-  getCartItems(){
-    return this.cartItems.asObservable();
+  getTotalPrice() {
+    return this.total_price; 
   }
 }
